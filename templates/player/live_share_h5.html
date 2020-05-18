@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title></title>
+		<link rel="stylesheet" href="css/live_share_h5.css">
+		<link rel="stylesheet" href="css/video-js.min.css">
+		<script src="js/flexible.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			
+			<!-- 直播播放器 -->
+			<div class="video_container">
+				<div class="video_container">
+					<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="100%" height="5.6rem"
+					 poster="">
+						<source src="https://v-cdn.zjol.com.cn/276992.mp4" type="video/mp4">
+					</video>
+				</div>
+			</div>
+
+			<!-- 直播用户信息Title -->
+			<div class="live_user_desc">
+				<img class="author_img" src="img/head_img.jpeg">
+				<div class="nickname_funsnum">
+					<p class="nickname">新华社</p>
+					<p class="funsnum">50万粉丝·新华社官方账号</p>
+				</div>
+				<div class="attention" :class="{'attention_active':currentAttentionState==1}" @click="payAttention">
+					{{ currentAttentionState==0?'+ 关注':'已关注' }}
+				</div>
+			</div>
+
+			<!-- 直播聊天室 -->
+			<div class="chat_room">
+				<!-- 讨论,简介 选项卡 -->
+				<div class="chat_room_tab">
+					<div class="tab_item" :class="{'tab_item_active':currentTab==0}" @click="changeTab(0)">讨论</div>
+					<div class="tab_item" :class="{'tab_item_active':currentTab==1}" @click="changeTab(1)">简介</div>
+				</div>
+				<!-- (讨论)聊天列表 -->
+				<div class="chat_list_container" v-show="currentTab==0">
+					<div class="chat_item_container" id="chat_item_container">
+						<p class="chat_item chat_room_title">欢迎来到直播间，直播内容和评论严禁出现违法违规、低俗色情、吸烟酗酒等内容，若有违反，将视情节严重程度对作者账号进行禁播、永久禁播或封停账号处理。如主播在直播过程中以陪玩、送礼物等方式诱导打赏、私下交易的，请谨慎判断，以防人身或财产损失。</p>
+
+						<!-- <p class="chat_item">
+							<span class="user_nickname">用户123456：</span>
+							你们真的很棒！！！
+						</p> -->
+					</div>
+				</div>
+				<!-- 简介 -->
+				<div class="live_desc" v-show="currentTab==1">
+					<p class="desc_p">
+						3月23日，满载着重庆对口支援湖北孝感医疗队首批返回医护人员的航班接受“水门礼”迎接。当日，重庆市对口支援湖北省孝感市医疗队首批669名队员顺利完成前方工作任务，分乘5架包机平安飞抵重庆。该批医疗队员随后将前往指定休养点进行为期14天的集中康养。
+					</p>
+				</div>
+			</div>
+			
+			<!-- 底部输入框 -->
+			<div class="chat_input_container">
+				<input class="chat_input" type="text" placeholder="我来说一说">
+				<div class="share_icon_num" @click="testSendMessage">
+					<img class="share_icon" src="img/icon_hot_detail_bottom_share_default.png">
+					<span class="share_num">1.2w</span>
+				</div>
+			</div>
+			
+		</div>
+		
+		<!-- js -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script src="js/time.js"></script>
+		<!-- 接入融云API -->
+		<script src="https://cdn.ronghub.com/RongIMLib-3.0.0-dev.min.js"></script>
+		<!-- vue根实例 -->
+		<script src="js/live_share_h5.js"></script>
+		
+		<!-- 直播播放器 -->
+		<script src="js/video.min.js"></script>
+		<script>
+			var options = {};
+			var myPlayer = videojs('my-video', options, function() {
+				var myPlayer = this;
+				myPlayer.src('https://v-cdn.zjol.com.cn/276992.mp4');
+				myPlayer.on("play", function() {
+					console.log("play");
+				});
+				myPlayer.on("pause", function() {
+					console.log("pause")
+				});
+				myPlayer.on("ended", function() {
+					console.log("ended");
+				});
+			});
+		</script>
+	</body>
+</html>

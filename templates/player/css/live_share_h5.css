@@ -1,0 +1,245 @@
+/* 初始化css */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+*{
+	box-sizing: border-box;
+}
+body,html{
+	margin: 0;
+	padding: 0;
+}
+body{
+	height: 100vh;
+	background-color: #272727;
+	padding-bottom: 1.2rem;
+}
+#app{
+	height: calc(100vh - 1.2rem);
+	display: flex;
+	flex-direction: column;
+}
+
+/* ---------------------------------------视频播放部分--------------------------------------- */
+/* 1.播放按钮自定义 */
+.video-js .vjs-big-play-button{
+	width: 1.5rem!important;
+	height: 1.5rem!important;
+	line-height: 1.5rem!important;
+	border-radius: 100%!important;
+	background-color: rgba(0,0,0,0.5)!important;
+	border: none!important;
+	position: absolute!important;
+	top: 0!important;
+	left: 0!important;
+	right: 0!important;
+	bottom: 0!important;
+	margin: auto!important;
+	z-index: 2000;
+}
+/* 2.播放器宽度高度 */
+.video_container{
+	position: relative;
+	width: 100%;
+	height: 5.6rem;
+}
+.my-video-dimensions{
+	width: 100%;
+	height: 5.6rem;
+}
+
+/* ---------------------------------------直播用户信息Title--------------------------------------- */
+.live_user_desc{
+	width: 100%;
+	height: 1.786rem;
+	min-height: 1.786rem;
+	padding: 0 0.4rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #1B1B1C;
+}
+.live_user_desc .author_img{
+	width: 1rem;
+	height: 1rem;
+	border-radius: 100%;
+}
+.nickname_funsnum{
+	flex: 1;
+	padding-left: 0.133rem;
+}
+.nickname_funsnum p{
+	width: 5.69rem;
+	white-space: nowrap;
+	overflow-x: scroll;
+}
+.nickname{
+	color: #FFFFFF;
+	font-size: 0.426rem;
+	font-weight: bold;
+	padding-bottom: 0.042rem;
+}
+.funsnum{
+	color: #999999;
+	font-size: 0.32rem;
+	padding-top: 0.042rem;
+}
+.attention{
+	color: #FFFFFF;
+	border-radius: 0.4rem;
+	width: 2rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(to right, #FF6300, #FF9D00);
+}
+.attention_active{
+	background: #1B1B1C;
+	border: #999999 1px solid;
+	color: #999999;
+}
+
+/* ---------------------------------------直播聊天室--------------------------------------- */
+/* 1.tab */
+.chat_room{
+	min-height: calc(100vh - 8.8533333333rem);
+	flex: 1;
+	margin-top: 0.266rem;
+	
+	display: flex;
+	flex-direction: column;
+}
+.chat_room_tab{
+	width: 100%;
+	height: 1.066rem;
+	display: flex;
+	align-items: center;
+	background-color: #1B1B1C;
+	
+	border-top-right-radius: 0.4rem;
+	border-top-left-radius: 0.4rem;
+}
+.tab_item{
+	width: 50%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #999999;
+	font-size: 0.426rem;
+}
+.tab_item_active{
+	color: #FF6F00;
+	position: relative;
+}
+.tab_item_active:after{
+	content: '';
+	width: 0.44rem;
+	height: 0.08rem;
+	background-color: #FF6F00;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border-top-right-radius: 100%;
+	border-top-left-radius: 100%;
+}
+/* 2.聊天列表 */
+.chat_list_container{
+	/* min-height: calc(100vh - 9.933333333rem); */
+	flex: 1;
+	overflow-y: scroll;
+	background-color: #1B1B1C;
+	padding: 0 0.266rem;
+	margin-top: 1px;
+}
+.chat_room_title{
+	color: #FF6F00!important;
+	font-size: 0.373rem;
+	padding: 0.26rem 0 0.1rem 0;
+}
+.chat_item span{
+	color: #999999;
+}
+.chat_item{
+	color: #FFFFFF;
+	line-height: 0.586rem;
+	font-size: 0.373rem;
+	margin: 0.1rem 0;
+}
+/* 3.简介 */
+.live_desc{
+	flex: 1;
+	overflow-y: scroll;
+	background-color: #1B1B1C;
+	padding: 0 0.266rem;
+	margin-top: 1px;
+}
+.desc_p{
+	color: #FFFFFF;
+	font-size: 0.373rem;
+	line-height: 0.586rem;
+	padding: 0.26rem 0 0.1rem 0;
+}
+
+
+/* ---------------------------------------底部输入框--------------------------------------- */
+.chat_input_container{
+	width: 100%;
+	height: 1.2rem;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 2000;
+	background-color: #1B1B1C;
+	padding: 0 0.133rem;
+	border-top: 1px solid #000000;
+	
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.chat_input{
+	width: 8.04rem;
+	height: 0.8rem;
+	border: none;
+	outline: none;
+	background-color: #272727;
+	border-radius: 0.4rem;
+	
+	padding-left: 1.066rem;
+	background-image: url('../img/icon_hot_detail_bottom_edit_default.png');
+	background-repeat: no-repeat;
+	background-size: 0.613rem 0.613rem;
+	background-position-y: center;
+	background-position-x: 0.266rem;
+}
+.share_icon_num{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.share_icon_num .share_icon{
+	width: 0.613rem;
+	height: 0.613rem;
+}
+.share_icon_num .share_num{
+	color: #999999;
+}

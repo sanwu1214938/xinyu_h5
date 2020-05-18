@@ -1,0 +1,63 @@
+/* 初始化css */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+
+*{
+	box-sizing: border-box;
+}
+body{
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden!important;
+}
+
+/* 编辑栏 */
+.ql-toolbar.ql-snow{
+	padding: 0.6vw 0.1vw!important;
+	border: none!important;
+	background-color: #EEEEEE;
+	display: flex;
+	align-items: center;
+	/* align-content: space-around; */
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+.ql-formats{
+	margin: 0!important;
+}
+.ql-formats button{
+	margin: 0.5vw 0.5vw!important;
+}
+/* .ql-formats button svg rect,.ql-formats button svg circle,.ql-formats button svg path,.ql-formats button svg line,.ql-formats button svg polyline{
+	stroke: #999999!important;
+}
+.ql-formats span svg rect,.ql-formats span svg circle,.ql-formats span svg path,.ql-formats span svg line,.ql-formats span svg polyline{
+	stroke: #999999!important;
+} */
+
+
+/* 编辑框 */
+.ql-container.ql-snow{
+	margin: 10vw 0;
+	border: none!important;
+	border: 1px #CCCCCC solid!important;
+	min-height: 60vw!important;
+}
+.ql-editor.ql-blank{
+	min-height: 60vw!important;
+}
+

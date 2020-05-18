@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<meta content="telephone=no" name="format-detection">
+		<meta content="email=no" name="format-detection">
+		<!--禁止缓存-->
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<meta http-equiv="Expires" content="0">
+		<meta name="Ogtitle" property="og:title" content="" />
+		<meta name="Ogimage" property="og:image" content="" />
+		<meta name="OgsiteName" property="og:site_name" content="" />
+		<meta name="Ogdescription" property="og:description" content="" />
+		<!--IE使用EDGE内核-->
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+		<title>心娱直播</title>
+		<link rel="icon shortcut" href="favicon.ico" />
+		<link rel="stylesheet" href="css/share.css" />
+		<!-- videojs -->
+		<link rel="stylesheet" href="css/video-js.min.css">
+		<script src="js/flexible.js"></script>
+	</head>
+	<body>
+		<div id="app">
+
+			<!--播放视频部分x5内核使用此方式-->
+			<div class="video_container" v-if="isXfive" >
+				<!-- 播放器部分-->
+				<div id="xinyu_video">
+					<!--<video class="dn" src="#" webkit-playsinline="true" playsinline="true" x-webkit-airplay="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" x5-video-ignore-metadata="true" poster="http://u8.chidaotv.com/pic/1487040531505big.jpeg"><p> 不支持video</p> </video>-->
+				</div>
+
+				<!-- 播放时显示的部分-->
+				<!-- 头部 -->
+				<div class="cover_header">
+					<div class="head_attation">
+						<img v-cloak class="head_img" src="img/head_default.png">
+						<div class="nickname_hotnum">
+							<p v-cloak class="nickname">Da杉杉45645465464545</p>
+							<p v-cloak class="hotnum">热度21.6w</p>
+						</div>
+						<div class="add_attation">
+							<img src="img/add_attainon.png">
+						</div>
+					</div>
+					<div v-cloak class="other_audience">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+					</div>
+				</div>
+				<!-- 心币 -->
+				<div class="xinbi_container">
+					<img src="img/gold_icon.png">
+					<p v-cloak>心币 666666666666666666</p>
+					<img class="for_more" src="img/icon_live_detail_more.png">
+				</div>
+
+				<!-- (讨论)聊天列表 -->
+				<div class="chat_list_container">
+					<div class="chat_item_container" id="chat_item_container">
+						<!-- <p class="chat_item chat_room_title">欢迎来到直播间，直播内容和评论严禁出现违法违规、低俗色情、吸烟酗酒等内容，若有违反，将视情节严重程度对作者账号进行禁播、永久禁播或封停账号处理。如主播在直播过程中以陪玩、送礼物等方式诱导打赏、私下交易的，请谨慎判断，以防人身或财产损失。</p> -->
+						<p v-cloak class="chat_item" v-for="(item, index) in chatList" :key="item.ID" >
+							<span v-cloak class="user_nickname">{{item.clientSequence}}&nbsp;</span>
+							{{item.payload.text}}
+						</p>
+					</div>
+				</div>
+
+				<!-- 底部 -->
+				<div class="cover_footer">
+					<input class="user_input" type="text" placeholder="聊点什么?">
+					<img src="img/icon_live_detail_share_default.png">
+					<img src="img/icon_live_detail_thumb_up_default.png">
+					<img src="img/icon_live_detail_gift_default.png">
+				</div>
+			</div>
+			
+			<!--播放视频部分其他内核使用此方式-->
+			<div class="video_container" :class="{'video_container_other':!isXfive}" v-else >
+				<!-- 播放器部分-->
+				<video id="xinyu_video_other" class="video_box video-js vjs-default-skin vjs-big-play-centered" data-setup="{}" poster="" controls>
+					<!-- hls直播源地址：CCTV6高清 -->
+					<!-- <source src="http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8"> -->
+					<!-- <source src="http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8"> -->
+					<source src="http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8">
+					<!-- RTMP直播源地址(移动端不支持)-->
+					<!-- <source src="rtmp://58.200.131.2:1935/livetv/hunantv"> -->
+				</video>
+				
+				<!-- 播放时显示的部分-->
+				<!-- 头部 -->
+				<div class="cover_header">
+					<div class="head_attation">
+						<img v-cloak class="head_img" src="img/head_default.png">
+						<div class="nickname_hotnum">
+							<p v-cloak class="nickname">Da杉杉45645465464545</p>
+							<p v-cloak class="hotnum">热度21.6w</p>
+						</div>
+						<div class="add_attation">
+							<img src="img/add_attainon.png">
+						</div>
+					</div>
+					<div v-cloak class="other_audience">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+						<img class="head_img" src="img/head_default.png">
+					</div>
+				</div>
+				<!-- 心币 -->
+				<div class="xinbi_container">
+					<img src="img/gold_icon.png">
+					<p v-cloak>心币 666666666666666666</p>
+					<img class="for_more" src="img/icon_live_detail_more.png">
+				</div>
+				
+				<!-- (讨论)聊天列表 -->
+				<div class="chat_list_container">
+					<div class="chat_item_container" id="chat_item_container">
+						<!-- <p class="chat_item chat_room_title">欢迎来到直播间，直播内容和评论严禁出现违法违规、低俗色情、吸烟酗酒等内容，若有违反，将视情节严重程度对作者账号进行禁播、永久禁播或封停账号处理。如主播在直播过程中以陪玩、送礼物等方式诱导打赏、私下交易的，请谨慎判断，以防人身或财产损失。</p> -->
+						<p v-cloak class="chat_item" v-for="(item, index) in chatList" :key="item.ID" >
+							<span v-cloak class="user_nickname">{{item.clientSequence}}&nbsp;</span>
+							{{item.payload.text}}
+						</p>
+					</div>
+				</div>
+				
+				<!-- 底部 -->
+				<div class="cover_footer">
+					<input class="user_input" type="text" placeholder="聊点什么?">
+					<img src="img/icon_live_detail_share_default.png">
+					<img src="img/icon_live_detail_thumb_up_default.png">
+					<img src="img/icon_live_detail_gift_default.png">
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+
+	<!-- js -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.tap.js"></script>
+	<script src="js/time.js"></script>
+	<!-- 播放器 -->
+	<script src="js/sewise.player.min.js"></script>
+	<!-- videojs -->
+	<script src="js/video.min.js"></script>
+	<!-- 接入腾讯IM -->
+	<script src="js/tim-js.js"></script>
+	<!-- vue根实例 -->
+	<script src="js/vue.min.js"></script>
+	<script src="js/share.js?v=1.0"></script>
+</html>

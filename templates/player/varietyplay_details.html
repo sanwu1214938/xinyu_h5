@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- facebook分享 -->
+		<meta property="og:title" content="title" />
+		<meta property="og:description" content="description" />
+		<meta property="og:image" content="thumbnail_image" />
+		<title>亚视综艺TV</title>
+		<link rel="stylesheet" href="../player/css/varietyplay_details.css">
+		<!-- 阿里云播放器 -->
+		<link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.8.8/skins/default/aliplayer-min.css" />
+		<script src="../player/js/flexible.js"></script>
+	</head>
+	<body id="body_diy" data-groupId = "0" data-dataId = "2" data-language = "zh_CN">
+		<div id="app">
+			
+			<!-- 视频播放器 部分 -->
+			<div class="video_container">
+				<div class="prism-player" id="J_prismPlayer"></div>
+			</div>
+			
+			<!-- 视频，评论tab 部分 -->
+			<div class="video_comment_tab" v-if="((currentTab==0) || (currentTab==4)) && !net404">
+				<div class="video_comment_tab_item" :class="{'video_comment_tab_item_active':currentTab==0}" @click="changeTab(0)"><span v-cloak id="language_video">{{language.comm.video}}</span></div>
+				<div class="video_comment_tab_item" :class="{'video_comment_tab_item_active':currentTab==4}" @click="changeTab(4)"><span v-cloak id="language_comment">{{language.comm.comment}}</span><span v-cloak style="font-size: 12px;">({{commentTotalNum}})</span></div>
+			</div>
+			
+			<!-- 视频选项卡 部分 -->
+			<div class="video_tab_container" v-if="currentTab==0 && !net404">
+				<!-- 1.视频简介 -->
+				<div class="video_detail_des">
+					<div class="des_title_guide">
+						<p v-cloak class="des_title">{{currentVarietySubtitle}}</p>
+						<div class="des_guide">
+							<a href="javascript:;" @click="changeTab(1)" v-cloak>{{language.comm.description}}</a> <img class="guide_icon" src="../player/img/icon_mine_set_enter_default.png" @click="changeTab(1)" >
+						</div>
+					</div>
+					<!-- <p class="other_details">看点·策划：{{currentVarietyTitle}}</p>
+					<p class="other_details">本期热度{{hotNum}}·{{varietyType}}</p> -->
+					<p class="other_details">
+						<span v-cloak v-for="(item,index) in gatherList[0]" :key="index">
+							{{index==0?'':'·'}}
+							{{item.name}}
+						</span>
+					</p>
+				</div>
+				<!-- 2.选集部分(电影页面) => 查看更多(综艺页面) -->
+				<div class="watch_more_variety" v-if="groupList">
+					<div class="watch_more_title">
+						<p v-cloak>{{groupTitle}}</p>
+						<div class="watch_more_guide" @click="changeTab(2)">
+							<a v-cloak href="javascript:;">{{updateExplain?updateExplain:language.otherdiff.SeeMore}}</a>
+							<img class="more_guide_icon" src="../player/img/icon_mine_set_enter_default.png" >
+						</div>
+					</div>
+					<div class="watch_more_list">
+						
+						<div v-cloak class="watch_more_item_container" v-for="(item,index) in groupList" :key="item.dataId" @click="changeWatchMoreItem(index)" >
+							<div class="watch_more_item">
+								<div class="watch_more_cover">
+									<img class="cover_img" :src="imgBaseUrl + item.cover" >
+									<span class="qishu">{{item.explain}}期</span>
+								</div>
+								<p class="more_item_des" :class="{'more_item_des_active':currentMoreItemIdx==index}">{{item.title}}</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<!-- 3.猜你喜欢部分(待做...) -->
+				<!-- <div class="guess_like_container">
+					<div class="guess_like_title">
+						<div class="under_line_guess"></div>
+						<img src="../player/img/icon_home_chase.png" >
+						<p>猜你喜欢</p>
+					</div>
+					<div class="guess_like_list">
+						<div class="guess_like_item">
+							<div class="video_poster">
+								<img src="../player/img/yewen.png" >
+								<span class="qishu">02-25期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title">王牌对王牌第5季</p>
+								<p class="other_des_content">甄子丹精彩武打动作</p>
+								<p class="other_des_hot">热度 6377</p>
+							</div>
+						</div>
+						
+						<div class="guess_like_item">
+							<div class="video_poster">
+								<img src="../player/img/yewen.png" >
+								<span class="qishu">02-25期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title">王牌对王牌第5季</p>
+								<p class="other_des_content">甄子丹精彩武打动作</p>
+								<p class="other_des_hot">热度 6377</p>
+							</div>
+						</div>
+						
+						<div class="guess_like_item">
+							<div class="video_poster">
+								<img src="../player/img/yewen.png" >
+								<span class="qishu">02-25期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title">王牌对王牌第5季</p>
+								<p class="other_des_content">甄子丹精彩武打动作</p>
+								<p class="other_des_hot">热度 6377</p>
+							</div>
+						</div>
+						
+						<div class="guess_like_item">
+							<div class="video_poster">
+								<img src="../player/img/yewen.png" >
+								<span class="qishu">02-25期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title">王牌对王牌第5季</p>
+								<p class="other_des_content">甄子丹精彩武打动作</p>
+								<p class="other_des_hot">热度 6377</p>
+							</div>
+						</div>
+					</div>
+					<div class="watch_all_btn" @click="changeTab(3)">
+						<img src="../player/img/icon_tabbar_video_selected@2x.png" >
+						<span>查看全部</span>
+					</div>
+				</div> -->
+				<!-- 4.用户评论展示部分(H5端只展示) -->
+				<div class="user_comment">
+					<div class="comment_title_type">
+						<div class="comment_title">
+							<div class="under_line_comment" :class="{'under_line_comment_en':languageType=='en_US'}"></div>
+							<img class="comment_title_icon" src="../player/img/icon_home_detail_comment.png" >
+							<p v-cloak>{{language.comm.comment}}</p>
+						</div>
+						<div class="comment_type">
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==0}" @click="changeCommentType(0)"><span v-cloak>{{language.comm.Hottest}}</span></div>
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==1}" @click="changeCommentType(1)"><span v-cloak>{{language.comm.Newest}}</span></div>
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==2}" @click="changeCommentType(2)"><span v-cloak>{{language.comm.Earliest}}</span></div>
+						</div>
+					</div>
+					<div class="user_comment_list" v-if="commentListData">
+						
+						<div class="user_comment_item" v-for="(item,index) in commentListData" :key="index">
+							<div class="user_head_img"><img class="user_img" :src="item.avatar? (imgBaseUrl + item.avatar) : '../player/img/default.png'" ></div>
+							<div v-cloak class="user_comment_des">
+								<div class="user_name_time">
+									<div class="user_name">{{item.nickname}}</div>
+									<div class="user_time">{{(item.addTime) | getCommentTime}}</div>
+								</div>
+								<div class="user_comment_container">
+									<p class="user_comment_content">
+										{{item.content}}
+									</p>
+									<a href="javascript:;" style="color: #FF6F00;" v-cloak>{{language.comm.more}}</a>
+								</div>
+								<div class="under_line"></div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="no_comment_data" v-else >
+						<img src="../player/img/404.png" >
+						<a href="javascript:;" v-cloak>{{language.comm.NoCommentYet}}</a>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 视频 简介 弹出框部分 -->
+			<div class="video_des_popup" v-else-if="currentTab==1" >
+				<div class="des_title_close">
+					<p>{{language.comm.description}}</p>
+					<img class="close_des_popup" src="../player/img/icon_home_detail_comment_close_default.png" @click="changeTab(0)" >
+				</div>
+				
+				<div class="tv_title_des">
+					<div class="tv_title_score">
+						<p>{{currentVarietySubtitle}}</p>
+						<!-- <div><span>9.2</span> 分</div> -->
+					</div>
+					<p class="tv_des">
+						<!-- 2018·悬疑·武打·普通话 -->
+						<span v-for="(item,index) in gatherList[0]" :key="index">
+							{{index==0?'':'·'}}
+							{{item.name}}
+						</span>
+					</p>
+				</div>
+				
+				<!-- 演员列表(待做...) -->
+				<!-- <div class="performer_list">
+					<div class="performer_item">
+						<div class="performer_head_img"><img class="performer_img" src="../player/img/head_img.jpeg" ></div>
+						<p class="performer_name">甄子丹</p>
+						<p class="performer_role">饰 叶问</p>
+					</div>
+					<div class="performer_item">
+						<div class="performer_head_img"><img class="performer_img" src="../player/img/head_img.jpeg" ></div>
+						<p class="performer_name">甄子丹</p>
+						<p class="performer_role">饰 叶问</p>
+					</div>
+					<div class="performer_item">
+						<div class="performer_head_img"><img class="performer_img" src="../player/img/head_img.jpeg" ></div>
+						<p class="performer_name">甄子丹</p>
+						<p class="performer_role">饰 叶问</p>
+					</div>
+					<div class="performer_item">
+						<div class="performer_head_img"><img class="performer_img" src="../player/img/head_img.jpeg" ></div>
+						<p class="performer_name">甄子丹</p>
+						<p class="performer_role">饰 叶问</p>
+					</div>
+					<div class="performer_item">
+						<div class="performer_head_img"><img class="performer_img" src="../player/img/head_img.jpeg" ></div>
+						<p class="performer_name">甄子丹</p>
+						<p class="performer_role">饰 叶问</p>
+					</div>
+					<div class="performer_item">
+						<div class="performer_head_img"><img class="performer_img" src="../player/img/head_img.jpeg" ></div>
+						<p class="performer_name">甄子丹</p>
+						<p class="performer_role">饰 叶问</p>
+					</div>
+				</div> -->
+				
+				<div class="the_whole_des">
+					<div class="whole_des_title">{{language.comm.abstract}}</div>
+					<p class="whole_des_content">
+						{{currentVarietyDesc}}
+					</p>
+				</div>
+				
+				<button class="close_des_btn" type="button" @click="changeTab(0)" >{{language.comm.PutItAway}}</button>
+			</div>
+			
+			<!-- 视频 查看更多 弹出框部分 -->
+			<div class="video_choose_popup" v-else-if="currentTab==2" >
+				<div class="guesslike_popup_container more_popup_container">
+					<div class="guesslike_popup_title more_popup_title">
+						<p>{{groupTitle}}</p>
+						<img class="guesslike_popup_close more_popup_close" src="../player/img/icon_home_detail_comment_close_default.png" @click="changeTab(0)" >
+					</div>
+					
+					<div class="guess_like_list more_list">
+						
+						<div class="guess_like_item more_item" v-for="(item,index) in groupList" :key="item.dataId" @click="changeWatchMoreItem(index)" >
+							<div class="video_poster">
+								<img :src="imgBaseUrl + item.cover" >
+								<span class="qishu">{{item.explain}}期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title" :class="{'more_item_des_active':currentMoreItemIdx==index}">{{item.title}}</p>
+								<p class="other_des_content" :class="{'more_item_des_active':currentMoreItemIdx==index}">{{item.subtitle}}</p>
+								<p class="other_des_hot" :class="{'more_item_des_active':currentMoreItemIdx==index}">{{item.synopsis}}</p>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			<!-- 视频 猜你喜欢 弹出框部分 -->
+			<div class="video_guesslike_popup" v-else-if="currentTab==3" >
+				<div class="guesslike_popup_container">
+					<div class="guesslike_popup_title">
+						<p>猜你喜欢</p>
+						<img class="guesslike_popup_close" src="../player/img/icon_home_detail_comment_close_default.png" @click="changeTab(0)" >
+					</div>
+					
+					<div class="guess_like_list">
+						<div class="guess_like_item">
+							<div class="video_poster">
+								<img src="../player/img/yewen.png" >
+								<span class="qishu">02-25期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title">王牌对王牌第5季</p>
+								<p class="other_des_content">甄子丹精彩武打动作</p>
+								<p class="other_des_hot">热度 6377</p>
+							</div>
+						</div>
+						
+						<div class="guess_like_item">
+							<div class="video_poster">
+								<img src="../player/img/yewen.png" >
+								<span class="qishu">02-25期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title">王牌对王牌第5季</p>
+								<p class="other_des_content">甄子丹精彩武打动作</p>
+								<p class="other_des_hot">热度 6377</p>
+							</div>
+						</div>
+						
+						<div class="guess_like_item">
+							<div class="video_poster">
+								<img src="../player/img/yewen.png" >
+								<span class="qishu">02-25期</span>
+							</div>
+							<div class="video_other_des">
+								<p class="other_des_title">王牌对王牌第5季</p>
+								<p class="other_des_content">甄子丹精彩武打动作</p>
+								<p class="other_des_hot">热度 6377</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 评论选项卡 部分 -->
+			<div class="comment_tab_container" v-else-if="currentTab==4 && !net404" >
+				<!-- 4.用户评论展示部分(H5端只展示) -->
+				<div class="user_comment">
+					<div class="comment_title_type">
+						<div class="comment_title">
+							<div class="under_line_comment" :class="{'under_line_comment_en':languageType=='en_US'}"></div>
+							<img class="comment_title_icon" src="../player/img/icon_home_detail_comment.png" >
+							<p>{{language.comm.comment}}</p>
+						</div>
+						<!-- <div class="comment_type">
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==0}" @click="changeCommentType(0)">最热</div>
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==1}" @click="changeCommentType(1)">最新</div>
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==2}" @click="changeCommentType(2)">最早</div>
+						</div> -->
+					</div>
+					
+					<div class="user_comment_list" v-if="commentListData">
+						
+						<div class="user_comment_item" v-for="(item,index) in commentListData" :key="index">
+							<div class="user_head_img"><img class="user_img" :src="item.avatar? (imgBaseUrl + item.avatar) : '../player/img/default.png'" ></div>
+							<div class="user_comment_des">
+								<div class="user_name_time">
+									<div class="user_name">{{item.nickname}}</div>
+									<div class="user_time">{{(item.addTime) | getCommentTime}}</div>
+								</div>
+								<div class="user_comment_container">
+									<p class="user_comment_content">
+										{{item.content}}
+									</p>
+									<a href="javascript:;" style="color: #FF6F00;">{{language.comm.more}}</a>
+								</div>
+								<div class="under_line"></div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="no_comment_data" v-else >
+						<img src="../player/img/404.png" >
+						<a href="javascript:;" v-cloak>{{language.comm.NoCommentYet}}</a>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- 网络错误提示 -->
+			<div class="net_error" v-if="net404">
+				<img src="../player/img/404.png" >
+				<p>网络超时，请稍后重试</p>
+				<div class="refresh_btn" @click="refreshPage">点击重试</div>
+			</div>
+		</div>
+		
+		<!-- js -->
+		<script src="../player/js/jquery.min.js"></script>
+		<script>
+			var groupId = $('#body_diy').attr("data-groupId");
+			var varietyId = $('#body_diy').attr("data-dataId");
+			var langInfo = $('#body_diy').attr("data-language");
+		</script>
+		<script src="../player/js/vue.min.js"></script>
+		<script src="../player/js/time.js"></script>
+		<!-- 阿里云播放器 -->
+		<script charset="utf-8" type="text/javascript" src="https://g.alicdn.com/de/prismplayer/2.8.8/aliplayer-min.js"></script>
+		<!-- 公共方法 -->
+		<!-- <script src="../player/js/configuration.js"></script> -->
+		<!-- vue根实例 --> 
+		<script src="../player/js/varietyplay_details.js"></script>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>发布</title>
+		<link rel="stylesheet" href="css/quill.core.css">
+		<link rel="stylesheet" href="css/quill.snow.css">
+		<link rel="stylesheet" href="css/quill.bubble.css">
+		<link rel="stylesheet" href="css/test.css">
+		<script src="js/vue.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="edit_container">
+				<quill-editor v-model="content" ref="myQuillEditor" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)"
+				 @change="onEditorChange($event)">
+				</quill-editor>
+				<button v-on:click="saveHtml">保存</button>
+			</div>
+
+			<div v-html="content"></div>
+		</div>
+
+		<script src="js/quill.min.js"></script>
+		<script src="js/vue-quill-editor.js"></script>
+		<script>
+			var toolbarOptions = [
+			    ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+			    ['blockquote', 'code-block'],
+			
+			    // [{ 'header': 1 }, { 'header': 2 }], // custom button values
+			    // [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+			    // [{ 'script': 'sub'}, { 'script': 'super' }], // superscript/subscript
+			    // [{ 'indent': '-1'}, { 'indent': '+1' }], // outdent/indent
+			    // [{ 'direction': 'rtl' }], // text direction
+			
+			    // [{ 'size': ['small', false, 'large', 'huge'] }], // custom dropdown
+			    // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+			
+			    // [{ 'color': [] }, { 'background': [] }], // dropdown with defaults from theme
+			    // [{ 'font': [] }],
+			    // [{ 'align': [] }],
+			
+			    ['image','video'],
+				
+				['clean'], // remove formatting button
+			];
+			Vue.use(window.VueQuillEditor);
+			var app = new Vue({
+				el: '#app',
+				data: function() {
+					return {
+						content: '',
+						editorOption: {
+							// theme: 'snow',
+							placeholder: '请输入内容',
+							modules: {
+								toolbar: toolbarOptions
+							}
+						}
+					}
+				},
+				mounted() {
+
+				},
+				computed: {
+					editor() {
+						return this.$refs.myQuillEditor.quill;
+					},
+				},
+				methods: {
+					onEditorReady(editor) {}, // 准备编辑器
+					onEditorBlur() {}, // 失去焦点事件
+					onEditorFocus() {}, // 获得焦点事件
+					onEditorChange() {}, // 内容改变事件
+					saveHtml: function(event) {
+						alert(this.content);
+						console.log(this.content);
+					}
+				}
+			});
+
+			// 选择视频
+			$(".ql-video").on("click", function() {
+				alert("选择视频");
+			})
+		</script>
+	</body>
+</html>

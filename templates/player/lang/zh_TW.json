@@ -1,0 +1,20 @@
+{
+	"comm": {
+		"video": "視頻",
+		"comment": "評論",
+		"description": "簡介",
+		"ChooseSeries": "選集",
+		"Hottest": "最熱",
+		"Newest": "最新",
+		"Earliest": "最早",
+		"more": "全文",
+		"abstract": "摘要",
+		"PutItAway": "收起",
+		"SeriesDescription": "分集簡介",
+		"episode": "集",
+		"NoCommentYet": "還沒有評論，快來搶沙發吧"
+	},
+	"otherdiff": {
+		"SeeMore": "查看更多"
+	}
+}

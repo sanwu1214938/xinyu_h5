@@ -1,0 +1,20 @@
+{
+	"comm": {
+		"video": "Video",
+		"comment": "Comment",
+		"description": "Description",
+		"ChooseSeries": "Series",
+		"Hottest": "Hottest",
+		"Newest": "Newest",
+		"Earliest": "Earliest",
+		"more": "More",
+		"abstract": "Abstract",
+		"PutItAway": "Put It Away",
+		"SeriesDescription": "Series Description",
+		"episode": "episode",
+		"NoCommentYet": "No Comment Yet"
+	},
+	"otherdiff": {
+		"SeeMore": "See More"
+	}
+}

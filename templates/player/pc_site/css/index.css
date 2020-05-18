@@ -1,0 +1,138 @@
+/* 初始化css */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+*{
+	box-sizing: border-box;
+}
+body,html{
+	margin: 0;
+	padding: 0;
+}
+
+#app{
+	width: 100vw;
+	min-height: 100vh;
+	margin: 0 auto;
+	font-size: 0;
+}
+
+/* 头部 */
+.header{
+	width: 100%;
+	height: 80px;
+	display: flex;
+	align-items: center;
+}
+.xinyu_logo{
+	width: 165px;
+	height: auto;
+	margin-left: 358px;
+}
+
+/* 轮播 */
+.swiper-container{
+	width: 100%;
+	height: 32vw;
+	min-width: 1280px;
+	min-height: 600px;
+}
+.swiper-wrapper,.swiper-slide,.swiper-slide img{
+	width: 100%;
+	height: 100%;
+}
+
+
+/* main */
+.main{
+	width: 100%;
+	min-width: 1280px;
+	min-height: 800px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.main_img{
+	width: 480px;
+	height: 600px;
+}
+.main_content{
+	width: 666px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 100px;
+}
+.main_content p{
+	width: 100%;
+}
+.main_content_title{
+	width: 130px!important;
+	font-size: 32px;
+	color: #0E111A;
+	font-weight: bold;
+	position: relative;
+	margin-bottom: 66px;
+}
+.main_content_title::after{
+	content: "";
+	position: absolute;
+	width: 77px;
+	height: 1px;
+	background-color: #999999;
+	left: 0;
+	right: 0;
+	bottom: -10px;
+	margin: auto;
+}
+.main_content_desc_title{
+	margin-bottom: 66px;
+	font-size: 20px;
+	color: #0E111A;
+	line-height: 28px;
+}
+.main_content_desc_detail{
+	margin-bottom: 60px;
+	font-size: 14px;
+	color: #666666;
+	line-height: 26px;
+}
+
+/* 我们的优势 */
+.our_advantage{
+	width: 100%;
+	min-width: 1280px;
+	height: auto;
+}
+
+
+/* footer */
+.footer{
+	background-color: #0E111A;
+	width: 100%;
+	height: 7vw;
+	min-width: 1280px;
+	min-height: 134px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.footer p{
+	color: #999999;
+	font-size: 20px;
+	letter-spacing: 1px;
+}

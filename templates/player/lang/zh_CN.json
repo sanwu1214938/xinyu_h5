@@ -1,0 +1,20 @@
+{
+	"comm": {
+		"video": "视频",
+		"comment": "评论",
+		"description": "简介",
+		"ChooseSeries": "选集",
+		"Hottest": "最热",
+		"Newest": "最新",
+		"Earliest": "最早",
+		"more": "全文",
+		"abstract": "摘要",
+		"PutItAway": "收起",
+		"SeriesDescription": "分集简介",
+		"episode": "集",
+		"NoCommentYet": "还没有评论，快来抢沙发吧"
+	},
+	"otherdiff": {
+		"SeeMore": "查看更多"
+	}
+}

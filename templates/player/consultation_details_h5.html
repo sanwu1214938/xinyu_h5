@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>咨询详情</title>
+		<link rel="stylesheet" type="text/css" href="css/consultation_details_h5.css" />
+		<script src="js/flexible.js"></script>
+		<script src="js/time.js"></script>
+		<script src="js/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="total_container">
+				<div class="header">
+					<p class="title">首架接載“鑽石公主”號郵輪香港居民的專機抵港！</p>
+					<div class="address_time_attention">
+						<img class="author_img" src="img/head_img.jpeg" >
+						<div class="address_time">
+							<div class="address">香港新聞網</div>
+							<div class="time">
+								<div class="year-m-d">
+									<span>2020</span>/<span>2</span>/<span>20</span>
+								</div>
+								<div class="hour-m-s" style="margin-left: 5px;">
+									<span>09</span>:<span>33</span>
+								</div>
+							</div>
+						</div>
+						<div class="attention" :class="{'attention_active':currentAttentionState==1}" @click="payAttention" >
+							{{ currentAttentionState==0?'+ 关注':'已关注' }}
+						</div>
+					</div>
+				</div>
+				<div class="content" id="images_container">
+					<p>
+						香港新聞網2月20日電 2月20日早晨約8時半，首架接載“鑽石公主”號郵輪香港居民的專機抵達香港國際機場，飛機共載有106位香港居民，他們隨即被送往駿洋邨進行為期14天的強制檢疫。
+					</p>
+					<p>
+						早晨近7時，8輛負責接載專機乘客的旅遊巴士已駛到機場停機坪準備，記者現場見到，旅遊巴司機穿上全套防護衣，配戴口罩及面罩等；一批衛生防護中心及醫療輔助隊制服人員乘坐政府專車抵達停機坪閘口，經量度體溫後進入停機坪範圍。
+					</p>
+					<p>
+						約8時半，專機抵達停機坪，數名身穿防護衣人員登機協助。8時47分起，乘客開始陸續下機，他們全部配戴口罩，部分人戴手套及穿雨衣。有乘客朝鏡頭揮手，表情輕鬆，亦有乘客拍照紀念。他們隨後登上停在一旁候命的旅遊巴士，被送往駿洋邨進行為期14天的強制檢疫。
+					</p>
+					<img src="img/banner1.jpg">
+					<img src="img/11.jpeg">
+					<p>
+						約8時半，專機抵達停機坪，數名身穿防護衣人員登機協助。8時47分起，乘客開始陸續下機，他們全部配戴口罩，部分人戴手套及穿雨衣。有乘客朝鏡頭揮手，表情輕鬆，亦有乘客拍照紀念。他們隨後登上停在一旁候命的旅遊巴士，被送往駿洋邨進行為期14天的強制檢疫。(記者
+						韓星彤)
+					</p>
+				</div>
+				<p class="footer">1.3万阅读</p>
+			</div>
+			
+			<div class="user_comment_list_container">
+				<!-- 用户评论展示部分(H5端只展示,其余操作跳转app) -->
+				<div class="user_comment">
+					<div class="comment_title_type">
+						<div class="comment_title">
+							<div class="under_line_comment"></div>
+							<img class="comment_title_icon" src="img/icon_home_detail_comment.png" >
+							<p>评论</p>
+						</div>
+						<div class="comment_type">
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==0}" @click="changeCommentType(0)">最热</div>
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==1}" @click="changeCommentType(1)">最新</div>
+							<div class="comment_type_item" :class="{'comment_type_item_active':currentCommentType==2}" @click="changeCommentType(2)">最早</div>
+						</div>
+					</div>
+					<div class="user_comment_list">
+						<div class="user_comment_item">
+							<div class="user_head_img"><img class="user_img" src="img/head_img.jpeg" ></div>
+							<div class="user_comment_des">
+								<div class="user_name_time">
+									<div class="user_name">Jennifer·Dong</div>
+									<div class="user_time">03/01</div>
+								</div>
+								<div class="user_comment_container">
+									<p class="user_comment_content">
+										#漫漫寒假不能只学习吧#一生守护！唯爱嘉伦！
+									</p>
+									<a href="javascript:;" style="color: #FF6F00;">全文</a>
+								</div>
+								<div class="under_line"></div>
+							</div>
+						</div>
+						
+						<div class="user_comment_item">
+							<div class="user_head_img"><img class="user_img" src="img/head_img.jpeg" ></div>
+							<div class="user_comment_des">
+								<div class="user_name_time">
+									<div class="user_name">Jennifer·Dong</div>
+									<div class="user_time">03/01</div>
+								</div>
+								<div class="user_comment_container">
+									<p class="user_comment_content">
+										我就是这条gai，这条gai，最亮的崽！
+									</p>
+									<a href="javascript:;" style="color: #FF6F00;">全文</a>
+								</div>
+								<div class="under_line"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/fly-zomm-img.min.js"></script>
+		<script src="js/consultation_details_h5.js"></script>
+		<script>
+			$(document).ready(function() {
+				// 图片预览
+				$('#images_container').FlyZommImg({
+					rollSpeed: 200, //切换速度      
+					miscellaneous: true, //是否显示底部辅助按钮      
+					closeBtn: true, //是否打开右上角关闭按钮      
+					hideClass: 'hide', //不需要显示预览的 class      
+					imgQuality: 'thumb', //图片质量类型  thumb 缩略图  original 默认原图      
+					slitherCallback: function(direction, DOM) {
+						//左滑动回调 两个参数 第一个动向 'left,firstClick,close' 第二个 当前操作DOM
+						// console.log(direction,DOM);      
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

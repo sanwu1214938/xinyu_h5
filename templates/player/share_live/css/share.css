@@ -1,0 +1,332 @@
+/* 初始化css */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+*{
+	box-sizing: border-box;
+}
+body,html{
+	margin: 0;
+	padding: 0;
+}
+body{
+	width: 100vw;
+	height: 100vh;
+	background-color: transparent;
+}
+[v-cloak]{ display: none!important; }
+
+
+/* ---------------------------------------视频播放部分(x5类型)--------------------------------------- */
+/* .xinyu_video>div{
+	
+} */
+/* 1.播放器宽度高度 */
+.video_container{
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0;
+	position: relative;
+}
+#xinyu_video{
+	width: 100%;
+	height: 100%;
+	z-index: 100!important;
+}
+/* 播放按钮 */
+.big-play-btn{
+	position: absolute!important;
+	left: 50%!important;
+	top: 50%!important;
+	transform: translate(-50%, -50%)!important;
+	margin: 0 auto!important;
+}
+
+/* ---------------------------------------视频播放部分(其他类型)--------------------------------------- */
+.video_container_other{
+	height: 101vh!important;
+}
+.video_container>.video-js{
+	width: 100%!important;
+	height: 100%!important;
+}
+.video_container>.video-js>video{
+	width: 100%!important;
+	height: 100%!important;
+	/* object-fit: initial; */
+	/* object-fit: cover; */
+	/* background-color: transparent!important; */
+}
+/* 2.播放按钮自定义 */
+/* 改变播放按钮形状 */
+.video-js .vjs-big-play-button{
+	border: none!important;
+    font-size: 2.5em!important;
+	width: 2.5em!important;
+    height: 2.5em!important;
+	line-height: 2.5em!important;
+	text-align: center!important;
+    -webkit-border-radius: 2.5em!important;
+    -moz-border-radius: 2.5em!important;
+    border-radius: 2.5em!important;
+    background-color: rgba(255,111,0,.2)!important;
+    border-width: 1px!important;
+    margin-top: -1.25em!important;
+	margin-left: -1.25em!important;
+}
+/* 中间的播放箭头 */
+.vjs-big-play-button .vjs-icon-placeholder {
+    font-size: 1.63em!important;
+	color: #FF6F00;
+}
+/* 加载圆圈 */
+.vjs-loading-spinner {
+    font-size: 2.5em!important;
+    width: 2em!important;
+    height: 2em!important;
+    border-radius: 1em!important;
+    /* margin-top: -1em!important;
+    margin-left: -1.5em!important; */
+}
+/* 暂停时也显示播放按钮 */
+.vjs-paused .vjs-big-play-button,
+.vjs-paused.vjs-has-started .vjs-big-play-button {
+    display: block!important;
+}
+/* 点击屏幕播放/暂停 */
+.video-js.vjs-playing .vjs-tech {
+    pointer-events: auto!important;
+}
+/* 底部控制条 */
+.vjs-control-bar{
+	visibility: hidden!important;
+	display: none!important;
+}
+
+
+/* ---------------------------------------video上方样式层--------------------------------------- */
+/* 头部 */
+.cover_header{
+	position: absolute;
+	z-index: 200;
+	pointer-events: auto;
+	top: 1rem;
+	width: 100vw;
+	color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	padding: 0 0.16rem;
+}
+.head_img{
+	width: 0.933rem;
+	height: 0.933rem;
+	border-radius: 50%;
+}
+.head_attation{
+	width: 4.266rem;
+	height: 1.2rem;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 0.6rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 0.16rem;
+}
+.head_attation .nickname_hotnum{
+	width: 2.2rem;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	padding-left: 0.1rem;
+	padding-top: 0.05rem;
+}
+.nickname_hotnum p{
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.nickname_hotnum .nickname{
+	font-size: 0.373rem;
+	color: #FFFFFF;
+	height: 0.5rem;
+	line-height: 0.5rem;
+}
+.nickname_hotnum .hotnum{
+	font-size: 0.32rem;
+	color: #EFEFEF;
+	height: 0.4rem;
+	line-height: 0.4rem;
+}
+.add_attation{
+	width: 0.733rem;
+	height: 0.733rem;
+	border-radius: 50%;
+	background: linear-gradient(to right, rgb(255,111,0), rgb(255,155,0));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.add_attation img{
+	width: 0.5rem;
+	height: 0.5rem;
+}
+
+.other_audience{
+	height: 1.2rem;
+	position: relative;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	overflow: hidden;
+}
+/* .other_audience::after{
+	z-index: 100;
+	content: "";
+	width: 1rem;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.2));
+} */
+.other_audience img{
+	margin-left: 0.16rem;
+}
+
+.xinbi_container{
+	position: absolute;
+	z-index: 200;
+	pointer-events: auto;
+	width: 2.69rem;
+	height: 0.533rem;
+	border-radius: 0.263rem;
+	background: linear-gradient(to bottom, #3BD8C2, #18CDE2);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 0.12rem;
+	left: 0.21rem;
+	top: 2.34rem;
+}
+.xinbi_container img{
+	width: 0.373rem;
+	height: 0.373rem;
+	border-radius: 50%;
+}
+.xinbi_container img.for_more{
+	width: 0.3rem!important;
+	height: 0.3rem!important;
+}
+.xinbi_container p{
+	width: 2rem;
+	height: 0.373rem;
+	line-height: 0.373rem;
+	text-align: center;
+	padding: 0 0.12rem;
+	color: #FFFFFF;
+	font-size: 0.32rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+/* 中间弹幕 */
+.chat_list_container{
+	position: absolute;
+	z-index: 200;
+	width: 7.69rem;
+	height: 6.9rem;
+	left: 0;
+	bottom: 1.333rem;
+	overflow-y: scroll;
+	background-color: transparent;
+	padding: 0 0.266rem;
+}
+.chat_item_container{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+.chat_room_title{
+	color: #FF6F00!important;
+	font-size: 0.373rem;
+	padding: 0.26rem 0 0.1rem 0;
+}
+.chat_item{
+	color: #FFFFFF;
+	min-height: 0.613rem;
+	line-height: 0.613rem;
+	font-size: 0.373rem;
+	margin: 0.1rem 0;
+	background-color: rgba(0,0,0,0.4);
+	padding: 0.12rem 0.2rem 0.1rem 0.2rem;
+	border-radius: 0.4rem;
+}
+.chat_item span{
+	font-size: 0.373rem;
+	color: #FF9D00;
+}
+
+
+/* 底部输入框等 */
+.cover_footer{
+	position: absolute;
+	z-index: 200;
+	pointer-events: auto;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1.333rem;
+	padding: 0 0.16rem;
+	background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4));
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.cover_footer input{
+	border: none;
+	outline: none;
+	background: none;
+	background-color: rgba(0,0,0,0.5);
+	width: 6rem;
+	height: 0.96rem;
+	line-height: 0.96rem;
+	border-radius: 0.453rem;
+	color: #999999;
+	font-size: 0.373rem;
+	padding: 0 0.5rem;
+}
+.cover_footer img{
+	width: 0.96rem;
+}
+
+
+
+/* ---------------------------------------直播聊天室--------------------------------------- */
+
+
+
+/* ---------------------------------------底部输入框--------------------------------------- */
+

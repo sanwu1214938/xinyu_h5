@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>视频列表</title>
+		<link rel="stylesheet" type="text/css" href="css/video_list.css"/>
+	</head>
+	<body>
+		<div class="video_list_container" id="app">
+			
+			<a v-cloak :href="item.jumpAddress" v-for="(item,index) in themeListData" :key="item.dataId">
+				<div class="video_list_item">
+					<div class="cover_score">
+						<img class="cover_img" :src="imgBaseUrl + item.cover" >
+						<!-- <span class="score">9.9</span> -->
+						<p class="explain">{{item.explain}}</p>
+					</div>
+					<p class="video_title">{{item.title}}</p>
+					<p class="video_desc">{{item.subtitle}}</p>
+				</div>
+			</a>
+			
+		</div>
+		
+		<!-- js -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.min.js"></script>
+		<!-- vue根实例 -->
+		<script src="js/video_list.js"></script>
+	</body>
+</html>

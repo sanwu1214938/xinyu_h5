@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>亚视心娱</title>
+		<link rel="stylesheet" href="css/index.css">
+		<!-- 轮播插件 -->
+		<link rel="stylesheet" href="css/swiper.min.css">
+	</head>
+	<body>
+		<div id="app">
+			
+			<!-- 头部 -->
+			<div class="header">
+				<img class="xinyu_logo" src="img/icon_title_logo@2x.png">
+			</div>
+			
+			<!-- 轮播图 -->
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="img/img_banner@2x.png" >
+					</div>
+				</div>
+				<!-- <div class="swiper-pagination"></div> -->
+			</div>
+			
+			<!-- 主体 -->
+			<div class="main">
+				<img class="main_img" src="img/img_about@2x.png" >
+				<div class="main_content">
+					<p class="main_content_title">关于我们</p>
+					<p class="main_content_desc_title">“心娱”是以互动综艺娱乐为特色的平台，同时也是亚洲电视旗下唯一互联网视频平台。</p>
+					<p class="main_content_desc_detail">“心娱”为用户提供丰富、高清、流畅的专业视频体验，致力于让人们平等、便捷地获得 更多、更好的视频。心娱主要提供视频、直播、影业、新闻等多样化的产品和服务。未来， “心娱”将在多元化的内容储备、个性化的产品体验、定制化营销服务领域继续发力， 引领视频体验革命。</p>
+				</div>
+			</div>
+			
+			<!-- 我们的优势 -->
+			<img class="our_advantage" src="img/img_advantage@2x.png" >
+			
+			<!-- footer -->
+			<div class="footer">
+				<p>Copyright © 2020 ASIA MOMENTUM MEDIA LIMITED,All Right Reserved.</p>
+			</div>
+		</div>
+
+
+		<!-- js -->
+		<script src="js/vue.min.js"></script>
+		<!-- 轮播插件 -->
+		<script src="js/swiper.min.js"></script>
+		<script>
+			// vue根实例
+			var app = new Vue({
+				el: "#app",
+				data() {
+					return {
+						msg: ""
+					}
+				}
+			});
+
+			// 轮播图
+			var mySwiper = new Swiper('.swiper-container', {
+				// pagination: {
+				// 	el: '.swiper-pagination',
+				// },
+			})
+		</script>
+	</body>
+</html>
